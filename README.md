@@ -1,38 +1,38 @@
 # englex-csv
 
-Скрипт выгружает данные из всех словарей в личном кабинете englex и экспортирует в csv файл.
+This is a script for exporting all your words from Englex personal dictionaries to a CSV file.
 
-## Установка зависимостей
+## Installing dependencies
 
 ```shell
-# Создание виртуального окружения.
+# Creating a virtual environment.
 python3 -m venv venv
 source venv/bin/activate
 
-# Установка зависимостей.
+# Installing dependencies.
 pip install -r requirements.txt
 ```
 
-## Запуск
+## Running the script
 
-Необходимо определить переменные окружения:
+You need to specify necessary environment variables:
 
-| Имя переменной       | Описание            |
-|----------------------|---------------------|
-| ENGLEX_USER_EMAIL    | Email пользователя  |
-| ENGLEX_USER_PASSWORD | Пароль пользователя |
+| Variable name        | Description          |
+|----------------------|----------------------|
+| ENGLEX_USER_EMAIL    | User's email address |
+| ENGLEX_USER_PASSWORD | User's password      |
 
-Затем вызвать `main.py`, после чего слова будут сохранены в файле `englex.csv`.
+Next you can run the `main.py` script, it will create `englex.csv` file with your data.
 
-Так же можно указать альтернативный путь при запуске скрипта, передав его в аргументах.
+You can also specify an alternative export path in the script arguments.
 
 ```shell
-# Экспорт переменных окружения.
+# Exporting the environment variables.
 export ENGLEX_USER_EMAIL=student@example.com
 export ENGLEX_USER_PASSWORD=my_secret_password
 
-# Запуск экспорта.
+# Run the script.
 python3 main.py
-# Или...
+# Or you can...
 python3 main.py another/path/to/save/output.csv
 ```
