@@ -28,7 +28,7 @@ class User:
 async def get_user(email: str, password: str, session: aiohttp.ClientSession) -> User:
     async with session.get('https://my.englex.ru/login') as resp:
         raw_cookie = unquote_plus(resp.cookies['YUPE_TOKEN'].value)
-        csrf_token = re.search(r'"([^"]+)"', raw_cookie).group()
+        csrf_token = re.search(r'"([^"]+)"', raw_cookie).group(1)
 
     async with session.post('https://my.englex.ru/login', data={
         'YUPE_TOKEN': csrf_token,
@@ -40,8 +40,8 @@ async def get_user(email: str, password: str, session: aiohttp.ClientSession) ->
         if 'Email или пароль введены неверно!' in await resp.text():
             raise EnglexError('Email or password is incorrect!')
 
-    async with session.get('https://my.englex.ru/student/studentTeacher/vc') as resp:
-        refresh_token = resp.url.name
+    async with session.get('https://my.englex.ru/login', params={'vc': '/dictionary'}) as resp:
+        refresh_token = resp.url.parent.name
 
     async with session.post('https://api-class.englex.ru/v1/user/login', data={'token': refresh_token}) as resp:
         data = await resp.json()
