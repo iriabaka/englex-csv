@@ -17,16 +17,22 @@ pip install -r requirements.txt
 
 Необходимо определить переменные окружения:
 
-| Имя переменной    | Описание               |
-|-------------------|------------------------|
-| ENGLEX_STUDENT_ID | Идентификатор студента |
-| ENGLEX_TOKEN      | Временный bearer токен |
+| Имя переменной       | Описание            |
+|----------------------|---------------------|
+| ENGLEX_USER_EMAIL    | Email пользователя  |
+| ENGLEX_USER_PASSWORD | Пароль пользователя |
 
-Затем вызвать `main.py` с указанием пути к csv файлу.
+Затем вызвать `main.py`, после чего слова будут сохранены в файле `englex.csv`.
+
+Так же можно указать альтернативный путь при запуске скрипта, передав его в аргументах.
 
 ```shell
-export ENGLEX_STUDENT_ID=349662
-export ENGLEX_TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdXRoaWQiOjIzMjEzNCwiYXV0aHJvbGVzIjpbInN0dWRlbnQiXSwiZXhw...
+# Экспорт переменных окружения.
+export ENGLEX_USER_EMAIL=student@example.com
+export ENGLEX_USER_PASSWORD=my_secret_password
 
-python3 main.py englex.csv
+# Запуск экспорта.
+python3 main.py
+# Или...
+python3 main.py another/path/to/save/output.csv
 ```
